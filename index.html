@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class=" js no-touch" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Graph Theory Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your page description here">
+    <meta name="author" content="">
+    <!-- css -->
+    <link href="css/menu.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	<link href="css/toolbarstyles.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+	<div class="headerStyle">Graph Theory Editor
+    </div>
+	<!-- start header -->
+	<div class="grid-container">
+		<div class = "grid-header">
+			<div class="navbar navbar-static-top">
+				<div class="navigation">
+					<nav>
+					<ul class="nav topnav bold">
+						<li class="dropdown active">
+						<a href="">File <i class="icon-angle-down"></i></a>
+						<ul class="dropdown-menu bold">
+							<li><a href="">New Graph</a></li>
+							<li><a href="">Open</a></li>
+							<li><a href="">Save</a></li>
+			<li><a href="">Save as...</a></li>
+						</ul>
+						</li>
+						<li class="dropdown">
+						<a href="#">Graph <i class="icon-angle-down"></i></a>
+						<ul style="display: none;" class="dropdown-menu bold">
+							<li><a href="">Vertex</a></li>
+							<li><a href="">Edge</a></li>
+			<li><a href="">Adjacency Matrix</a></li>
+							<li><a href="">Settings</a></li>
+							<li class="dropdown"><a href="#">Algorithms <i class="icon-angle-right"></i></a>
+							<ul style="display: none;" class="dropdown-menu sub-menu-level1 bold">
+								<li><a href="">Block Finding</a></li>
+								<li><a href="">Center</a></li>
+			  <li><a href="">Coloring</a></li>
+								<li><a href="">Dijkstra Shortest Path</a></li>
+							</ul>
+							</li>
+						</ul>
+						</li>
+						<li class="dropdown">
+						<a href="#">Pages <i class="icon-angle-down"></i></a>
+						<ul class="dropdown-menu bold">
+							<li><a href="">About us</a></li>
+							<li><a href="">Pricing boxes</a></li>
+							<li><a href="">404</a></li>
+						</ul>
+						</li>
+						<li class="dropdown">
+						<a href="#">Portfolio <i class="icon-angle-down"></i></a>
+						<ul style="display: none;" class="dropdown-menu bold">
+							<li><a href="">Portfolio 2 columns</a></li>
+							<li><a href="">Portfolio 3 columns</a></li>
+							<li><a href="">Portfolio 4 columns</a></li>
+							<li><a href="">Portfolio detail</a></li>
+						</ul>
+						</li>
+						<li class="dropdown">
+						<a href="#">Blog <i class="icon-angle-down"></i></a>
+						<ul class="dropdown-menu bold">
+							<li><a href="">Blog left sidebar</a></li>
+							<li><a href="">Blog right sidebar</a></li>
+							<li><a href="">Post left sidebar</a></li>
+							<li><a href="">Post right sidebar</a></li>
+						</ul>
+						</li>
+						<li>
+						<a href="">Contact </a>
+						</li>
+					</ul>
+					</nav>
+				</div>
+
+			</div>
+		</div> <!-- end of grid-header -->
+		<div class ="grid-display" id="divDisplay">
+			  <canvas id="canvasDisplay">
+			  Your browser does not support the HTML5 canvas tag.
+			  </canvas>
+		</div> <!-- grid-display -->
+		<!-- toolbar -->
+		<div class="grid-toolbar">
+			<div class="icon-bar">
+			  <a class="active-toolbar" href="#"><i class="fa fa-mouse-pointer"></i></a>
+			  <a href="#"><i class="fa fa-circle"></i></a>
+			  <a href="#"><i class="fa fa-link"></i></a>
+			  <a href="#"><i class="fa fa-tree"></i></a>
+			  <a href="#"><i class="fa fa-clone"></i></a>
+			  <a href="#"><i class="fa fa-paste"></i></a>
+			  <a href="#"><i class="fa fa-cogs"></i></a>
+			  <a href="#"><i class="fa fa-save"></i></a>
+			  <a href="#"><i class="fa fa-android"></i></a>
+			  <a href="#"><i class="fa fa-trash"></i></a>
+			</div>
+		</div> <!-- end toolbar -->
+    <div class = "grid-infobox">
+      <p>This is the infobox...</p>
+    </div>
+	</div> <!-- end container -->
+
+	<!-- end header -->
+
+   <!-- old toolbar
+  <div id="#toolbar">
+    <img class = "imgToolbar" id = "imgSelector" src="img/selector.png" onClick="setAction('Selection')">
+    <img class = "imgToolbar" id = "imgVertex" src="img/vertex.png" onClick="setAction('Vertex')">
+    <img class = "imgToolbar" id = "imgEdge" src="img/edge.png" onClick="setAction('Edge')">
+  </div>
+  end old toolbar -------------------   -->
+
+    <!-- javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+  	<script src="js/custom.js"></script>
+    <script src="js/Vertex.js"></script>
+    <script src="js/graphScript.js"></script>
+</body></html>
