@@ -12,11 +12,7 @@ var vertexColors = ['#CCCCFF', "#FA03E7"];
 var btnVertex = document.getElementById("imgVertex");
 var btnEdge = document.getElementById("imgEdge");
 var btnSelection = document.getElementById("imgSelector");
-var curAction = "Vertex";
-
-//var theDiv = document.getElementById("divDisplay");
-//canvas.width = theDiv.clientWidth;
-//canvas.height = theDiv.clientHeight;
+var curAction = "Selection";
 
 fitToContainer(canvas);
 
@@ -28,7 +24,6 @@ function fitToContainer(canvas){
   canvas.width  = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
 }
-
 
 function enableAllButtonsInToolbar(enableAll) {
   if(enableAll) {
@@ -44,22 +39,29 @@ function enableAllButtonsInToolbar(enableAll) {
 }
 
 function setAction(newAction) {
+    //remove highlight of past action
+    document.getElementById("toolbar_" + curAction).className = "";
     prevAction = curAction;
     curAction = newAction;
     console.log("New Action: " + curAction);
 
+    //add highlight to new action
+    document.getElementById("toolbar_" + curAction).className = "active-toolbar";
+
     //disable all buttons
-    enableAllButtonsInToolbar(false);
+    //enableAllButtonsInToolbar(false);
 
     switch (curAction) {
       case "Vertex":
-          btnVertex.style.opacity = "1";
+          //btnVertex.style.opacity = "1";
+
+
         break;
       case "Edge":
-          btnEdge.style.opacity = "1";
+          //btnEdge.style.opacity = "1";
         break;
       case "Selection":
-          btnSelection.style.opacity = "1";
+          //btnSelection.style.opacity = "1";
         break;
       default:
 

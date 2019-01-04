@@ -96,12 +96,12 @@
 		<!-- toolbar -->
 		<div class="grid-toolbar">
 			<div class="icon-bar">
-			  <a class="active-toolbar" href="#"><i class="fa fa-mouse-pointer"></i></a>
-			  <a href="#"><i class="fa fa-circle"></i></a>
-			  <a href="#"><i class="fa fa-link"></i></a>
-			  <a href="#"><i class="fa fa-tree"></i></a>
-			  <a href="#"><i class="fa fa-clone"></i></a>
-			  <a href="#"><i class="fa fa-paste"></i></a>
+			  <a class="active-toolbar" href="#" onclick="setAction('Selection');" id="toolbar_Selection"><i class="fa fa-mouse-pointer"></i></a>
+			  <a href="#" onclick="setAction('Vertex');" id="toolbar_Vertex"><i class="fa fa-circle"></i></a>
+			  <a href="#" onclick="setAction('Edge');" id="toolbar_Edge"><i class="fa fa-link"></i></a>
+			  <a href="#" onclick="setAction('Tree');" id="toolbar_Tree"><i class="fa fa-tree"></i></a>
+			  <a href="#"><i class="fa fa-clone" onclick="setAction('Copy');"></i></a>
+			  <a href="#"><i class="fa fa-paste" onclick="setAction('Paste');"></i></a>
 			  <a href="#"><i class="fa fa-cogs"></i></a>
 			  <a href="#"><i class="fa fa-save"></i></a>
 			  <a href="#"><i class="fa fa-android"></i></a>
