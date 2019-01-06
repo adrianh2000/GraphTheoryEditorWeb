@@ -10,7 +10,7 @@ class Vertex {
   }
 
   setFillColor(newColor) { this.fillColor = newColor;  }
-  
+
   draw(context) {
     context.beginPath();
     context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
@@ -28,5 +28,10 @@ class Vertex {
   isMouseInside(mouseX, mouseY) {
     return (mouseX >= this.x - this.radius) && (mouseX <= this.x + this.radius) &&
            (mouseY >= this.y - this.radius) && (mouseY <= this.y + this.radius);
+  }
+
+  setXY(x, y) {
+    this.x = x;
+    this.y = y;
   }
 }

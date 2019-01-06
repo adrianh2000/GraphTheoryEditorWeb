@@ -13,6 +13,7 @@ var btnVertex = document.getElementById("imgVertex");
 var btnEdge = document.getElementById("imgEdge");
 var btnSelection = document.getElementById("imgSelector");
 var curAction = "Selection";
+var selectedVerticesIndex = [];
 
 fitToContainer(canvas);
 
@@ -108,33 +109,48 @@ function createNewVertex(e) {
 fitCanvasToContainer();
 
 function onMouseMove(e) {
-    if(curAction != 'Selection')
+    if(curAction != 'MoveVertex')
       return;
 
+    if(selectedVerticesIndex.length > 0)
+        index = selectedVerticesIndex[0];  //use current vertex selected
+    else return;
+
     var pos = getMousePos(canvas, e);
-    var index = findVertexIndex(pos.x, pos.y);
+    vertexList[index].setXY(pos.x, pos.y);
+    
+    refreshCanvas(context);
 
-    if(index > -1) {
-      vertexList[index].setFillColor(vertexColors[1]);
-      vertexList[index].draw(context);
-    }
-
-    //console.log("Index = "+ index +" X = " + pos.x + " Y = " + pos.y);
+     //console.log("Index = "+ index +" X = " + pos.x + " Y = " + pos.y);
 }
 
 function mouseClick(e) {
   switch (curAction) {
     case 'Vertex':
-      console.log("vertex mode");
-      createNewVertex(e);
+        console.log("vertex mode");
+        createNewVertex(e);
       break;
     case 'Edge':
-      console.log("edge mode");
+        console.log("edge mode");
       break;
     case 'Selection':
-      console.log("Selection mode");
-    default:
+        console.log("Selection mode");
+        var pos = getMousePos(canvas, e);
+        var index = findVertexIndex(pos.x, pos.y);
 
+        if(index > -1) {
+          //Add vertex to selected list
+          selectedVerticesIndex.push(index);
+          curAction = 'MoveVertex';
+          console.log("Vertex ="+index+" was selected");
+        }
+        else return; //if no vertices were selected, quit
+      break;
+    case 'MoveVertex':
+        selectedVerticesIndex = [];
+        curAction = "Selection";
+      break;
+    default:
   }
 }
 
@@ -157,4 +173,11 @@ function getMousePos(canvas, evt) {
         x: (evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
         y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
     };
+}
+
+function refreshCanvas(context) {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  for(i=0; i < vertexList.length; i++)
+    vertexList[i].draw(context);
 }
