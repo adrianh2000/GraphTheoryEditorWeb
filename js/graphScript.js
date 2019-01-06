@@ -14,7 +14,10 @@ var btnVertex = document.getElementById("imgVertex");
 var btnEdge = document.getElementById("imgEdge");
 var btnSelection = document.getElementById("imgSelector");
 var curAction = "Selection";
+var toolbarAction = ['Selection', 'Vertex', 'Edge', 'Tree', 'Copy','Paste','Settings','Save','Algorithm','Trash'];
+var curToolbarAction = "Selection";
 var selectedVerticesIndex = [];
+var mouseX = 0, mouseY = 0;
 
 fitToContainer(canvas);
 
@@ -40,20 +43,23 @@ function enableAllButtonsInToolbar(enableAll) {
   }
 }
 
-function setAction(newAction) {
+function setAction(newToolbarAction) {
     //remove highlight of past action
-    document.getElementById("toolbar_" + curAction).className = "";
-    prevAction = curAction;
-    curAction = newAction;
-    console.log("New Action: " + curAction);
+    if(toolbarAction.indexOf(curToolbarAction) > -1)
+      document.getElementById("toolbar_" +curToolbarAction).className = "";
+
+    prevToolbarAction = curToolbarAction;
+    curToolbarAction = newToolbarAction;
+    console.log("New Action: " + curToolbarAction);
 
     //add highlight to new action
-    document.getElementById("toolbar_" + curAction).className = "active-toolbar";
+    document.getElementById("toolbar_" + curToolbarAction).className = "active-toolbar";
 
+    curAction = curToolbarAction;
     //disable all buttons
     //enableAllButtonsInToolbar(false);
 
-    switch (curAction) {
+    switch (curToolbarAction) {
       case "Vertex":
           //btnVertex.style.opacity = "1";
         break;
@@ -98,17 +104,22 @@ function createNewVertex(e) {
     posx = pos.x;
     posy = pos.y;
 
-    //var vertex = new Vertex(posx, posy, 10, vlabel, vertexColors[0], "#0000AA", 2);
-    //vertexList.push(vertex);
     graph.addVertex(posx, posy, 10, vlabel, vertexColors[0], "#0000AA", 2);
-
-    //vertex.draw(context);
     refreshCanvas(context);
 }
 
 fitCanvasToContainer();
 
 function onMouseMove(e) {
+    var pos = getMousePos(canvas, e);
+    mouseX = pos.x;
+    mouseY = pos.y;
+
+    if((curAction == 'AddEdge') && (selectedVerticesIndex.length == 1)) {
+      refreshCanvas(context);
+      return;
+    }
+
     if(curAction != 'MoveVertex')
       return;
 
@@ -116,8 +127,7 @@ function onMouseMove(e) {
         index = selectedVerticesIndex[0];  //use current vertex selected
     else return;
 
-    var pos = getMousePos(canvas, e);
-    graph.vertexList[index].setXY(pos.x, pos.y);
+    graph.vertexList[index].setXY(mouseX, mouseY);
 
     refreshCanvas(context);
 
@@ -127,8 +137,12 @@ function onMouseMove(e) {
 function mouseClick(e) {
   switch (curAction) {
     case 'Vertex':
+
         console.log("vertex mode");
-        createNewVertex(e);
+        curAction = 'AddVertex';
+      break;
+    case 'AddVertex':
+      createNewVertex(e);
       break;
     case 'Edge':
         curAction = "AddEdge";
@@ -208,8 +222,25 @@ function getMousePos(canvas, evt) {
 function refreshCanvas(context) {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  graph.draw(context);
+  //draw partial edge if edge selection is enabled
+  if((curAction == 'AddEdge') && (selectedVerticesIndex.length == 1)) {
+    //Add line to represent partial edges
+    var x0 = graph.vertexList[selectedVerticesIndex[0]].x;
+    var y0 = graph.vertexList[selectedVerticesIndex[0]].y;
+    var x1 = mouseX;
+    var y1 = mouseY;
+    var curStrokeColor = context.strokeStyle;
 
-  //for(i=0; i < vertexList.length; i++)
-  //  vertexList[i].draw(context);
+    context.beginPath();
+    context.moveTo(x0, y0);
+    context.lineTo(x1, y1);
+    context.strokeStyle = "#FF0000";
+    context.setLineDash([8,3]);
+    context.stroke();
+    context.strokeStyle = curStrokeColor;
+    context.setLineDash([]);
+  }
+
+  //draw graph
+  graph.draw(context);
 }
