@@ -7,6 +7,7 @@ jQuery(document).ready(function($) {
 
 var canvas = document.getElementById("canvasDisplay");
 var context = canvas.getContext("2d");
+var graph = new Graph();
 var vertexList = [];
 var vertexColors = ['#CCCCFF', "#FA03E7"];
 var btnVertex = document.getElementById("imgVertex");
@@ -55,8 +56,6 @@ function setAction(newAction) {
     switch (curAction) {
       case "Vertex":
           //btnVertex.style.opacity = "1";
-
-
         break;
       case "Edge":
           //btnEdge.style.opacity = "1";
@@ -69,7 +68,6 @@ function setAction(newAction) {
     }
 }
 
-
 function fitCanvasToContainer() {
   var parent = document.getElementById("divDisplay");
   canvas.width = parent.offsetWidth;
@@ -81,9 +79,9 @@ function findVertexIndex(posx, posy) {
   var found = false;
   var i = 0, indexFound = -1;
 
-  while ((i < vertexList.length) && (!found)) {
+  while ((i < graph.vertexList.length) && (!found)) {
 
-    if(vertexList[i].isMouseInside(posx, posy)) {
+    if(graph.vertexList[i].isMouseInside(posx, posy)) {
       found = true;
       indexFound = i;
     }
@@ -95,15 +93,17 @@ function findVertexIndex(posx, posy) {
 }
 
 function createNewVertex(e) {
-    var vlabel = vertexList.length;
+    var vlabel = graph.vertexList.length;
     var pos = getMousePos(canvas, e);
     posx = pos.x;
     posy = pos.y;
 
-    var vertex = new Vertex(posx, posy, 10, vlabel, vertexColors[0], "#0000AA", 2);
-    vertexList.push(vertex);
+    //var vertex = new Vertex(posx, posy, 10, vlabel, vertexColors[0], "#0000AA", 2);
+    //vertexList.push(vertex);
+    graph.addVertex(posx, posy, 10, vlabel, vertexColors[0], "#0000AA", 2);
 
-    vertex.draw(context);
+    //vertex.draw(context);
+    refreshCanvas(context);
 }
 
 fitCanvasToContainer();
@@ -117,8 +117,8 @@ function onMouseMove(e) {
     else return;
 
     var pos = getMousePos(canvas, e);
-    vertexList[index].setXY(pos.x, pos.y);
-    
+    graph.vertexList[index].setXY(pos.x, pos.y);
+
     refreshCanvas(context);
 
      //console.log("Index = "+ index +" X = " + pos.x + " Y = " + pos.y);
@@ -131,7 +131,8 @@ function mouseClick(e) {
         createNewVertex(e);
       break;
     case 'Edge':
-        console.log("edge mode");
+        curAction = "AddEdge";
+        console.log("Edge addition mode");
       break;
     case 'Selection':
         console.log("Selection mode");
@@ -149,6 +150,35 @@ function mouseClick(e) {
     case 'MoveVertex':
         selectedVerticesIndex = [];
         curAction = "Selection";
+      break;
+    case 'AddEdge':
+        console.log("Adding edge");
+        var pos = getMousePos(canvas, e);
+        var index = findVertexIndex(pos.x, pos.y);
+
+        if(index > -1) {
+          //Add vertex to selected list
+          selectedVerticesIndex.push(index);
+          console.log("added vertex "+index+" to selected");
+          if(selectedVerticesIndex.length == 2) {
+            //add edges
+            var v0 = selectedVerticesIndex[0];
+            var v1 = selectedVerticesIndex[1];
+
+            //Make sure v1 is >= v0, if not, swap them
+            if(v1 < v0)
+              v1 = [v0, v0 = v1][0];
+
+            graph.addEdge(v0, v1);
+            console.log("Added edge ["+v0+","+v1+"]");
+            selectedVerticesIndex = [];
+            refreshCanvas(context);
+          }
+          //curAction = 'MoveVertex';
+
+        }
+        else return; //if no vertices were selected, quit
+
       break;
     default:
   }
@@ -178,6 +208,8 @@ function getMousePos(canvas, evt) {
 function refreshCanvas(context) {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  for(i=0; i < vertexList.length; i++)
-    vertexList[i].draw(context);
+  graph.draw(context);
+
+  //for(i=0; i < vertexList.length; i++)
+  //  vertexList[i].draw(context);
 }
