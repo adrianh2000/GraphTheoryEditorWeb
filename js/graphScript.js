@@ -112,10 +112,26 @@ fitCanvasToContainer();
 
 function onMouseMove(e) {
     var pos = getMousePos(canvas, e);
+    var prevMouseX = mouseX;
+    var prevMouseY = mouseY;
     mouseX = pos.x;
     mouseY = pos.y;
 
     if((curAction == 'AddEdge') && (selectedVerticesIndex.length == 1)) {
+      refreshCanvas(context);
+      return;
+    }
+
+    if(curAction == 'MoveEdge') {
+      var xdif = mouseX - prevMouseX;
+      var ydif = mouseY - prevMouseY;
+      var selectedEdgeArray = graph.getSelectedEdge();
+      var v0 = graph.vertexList[selectedEdgeArray[0]];
+      var v1 = graph.vertexList[selectedEdgeArray[1]];
+
+      v0.setXY(v0.x + xdif, v0.y + ydif);
+      v1.setXY(v1.x + xdif, v1.y + ydif);
+
       refreshCanvas(context);
       return;
     }
@@ -137,7 +153,6 @@ function onMouseMove(e) {
 function mouseClick(e) {
   switch (curAction) {
     case 'Vertex':
-
         console.log("vertex mode");
         curAction = 'AddVertex';
       break;
@@ -150,6 +165,7 @@ function mouseClick(e) {
       break;
     case 'Selection':
         console.log("Selection mode");
+        //find out if a vertex was selected
         var pos = getMousePos(canvas, e);
         var index = findVertexIndex(pos.x, pos.y);
 
@@ -158,12 +174,32 @@ function mouseClick(e) {
           selectedVerticesIndex.push(index);
           curAction = 'MoveVertex';
           console.log("Vertex ="+index+" was selected");
+          return;
         }
-        else return; //if no vertices were selected, quit
+
+        //find out if an edge was selected
+        var selectedEdgeIndex = graph.getSelectedEdgeIndex(pos.x, pos.y, 5);
+
+        if(selectedEdgeIndex[0] > -1) {
+          //Edge was selected
+          curAction = 'MoveEdge';
+          selectedVerticesIndex = [];
+          selectedVerticesIndex.push(selectedEdgeIndex[0]);
+          selectedVerticesIndex.push(selectedEdgeIndex[1]);
+          graph.setSelectedEdge(selectedEdgeIndex[0], selectedEdgeIndex[1]);
+          console.log("Edge was selected. " + selectedEdgeIndex[0] + " --> " + selectedEdgeIndex[1]);
+        }
       break;
     case 'MoveVertex':
         selectedVerticesIndex = [];
         curAction = "Selection";
+      break;
+    case 'MoveEdge':
+        selectedVerticesIndex = [];
+        curAction = "Selection";
+        graph.deselectEdge();
+        console.log('Edge deselected');
+        refreshCanvas(context);
       break;
     case 'AddEdge':
         console.log("Adding edge");
@@ -188,8 +224,6 @@ function mouseClick(e) {
             selectedVerticesIndex = [];
             refreshCanvas(context);
           }
-          //curAction = 'MoveVertex';
-
         }
         else return; //if no vertices were selected, quit
 
@@ -243,4 +277,19 @@ function refreshCanvas(context) {
 
   //draw graph
   graph.draw(context);
+
+  // if(curAction == 'MoveEdge'){
+  //   var x0 = graph.vertexList[selectedVerticesIndex[0]].x;
+  //   var y0 = graph.vertexList[selectedVerticesIndex[0]].y;
+  //   var x1 = graph.vertexList[selectedVerticesIndex[1]].x;
+  //   var y1 = graph.vertexList[selectedVerticesIndex[1]].y;
+  //
+  //   context.beginPath();
+  //   context.moveTo(x0, y0);
+  //   context.lineTo(x1, y1);
+  //   context.strokeStyle = "#FF0000";
+  //   context.stroke();
+  //   context.strokeStyle = curStrokeColor;
+  //
+  // }
 }
