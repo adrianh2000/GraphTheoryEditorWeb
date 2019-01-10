@@ -69,6 +69,14 @@ function setAction(newToolbarAction) {
       case "Selection":
           //btnSelection.style.opacity = "1";
         break;
+      case "Complement":
+          graph.makeComplement();
+          curToolbarAction = "Selection";
+          curAction = curToolbarAction;
+          document.getElementById("toolbar_Complement").className = "";
+          document.getElementById("toolbar_Selection").className = "active-toolbar";
+          refreshCanvas(context);
+        break;
       default:
 
     }

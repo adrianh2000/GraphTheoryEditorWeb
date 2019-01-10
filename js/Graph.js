@@ -43,6 +43,15 @@ class Graph {
     return this.selectedEdge;
   }
 
+  makeComplement() {
+    for(var row = 0; row < this.vertexList.length; row++)
+      for(var col = row + 1; col < this.vertexList.length; col++)
+          if(this.adjacencyMatrix[row][col] == 1)
+            this.adjacencyMatrix[row][col] = 0;
+          else
+            this.adjacencyMatrix[row][col] = 1;          
+  }
+
   draw(context) {
     //draw edges
     for(var row = 0; row < this.vertexList.length; row++)

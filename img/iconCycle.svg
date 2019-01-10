@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="115px"
+	 height="60px" viewBox="0 0 115 60" enable-background="new 0 0 115 60" xml:space="preserve">
+<g id="Complement" display="none">
+	
+		<text transform="matrix(1 0 0 1 37.9995 54.8301)" display="inline" fill="#FFFFFF" stroke="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="63.4381">G</text>
+	
+		<line display="inline" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" x1="39.986" y1="5.169" x2="77" y2="5.169"/>
+</g>
+<g id="Complete_Graph" display="none">
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="77.778" y1="31.125" x2="38.465" y2="30.854"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="72.628" y1="43.781" x2="44.167" y2="45.581"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="58.555" y1="10.709" x2="72.258" y2="43.781"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="58.555" y1="10.709" x2="58.555" y2="51"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="58.555" y1="10.709" x2="44.167" y2="45.581"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="72.998" y1="16.668" x2="72.258" y2="43.781"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="72.998" y1="16.668" x2="58.555" y2="51"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="72.998" y1="16.668" x2="44.167" y2="45.581"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="72.628" y1="43.781" x2="44.167" y2="16.978"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="58.611" y1="51.541" x2="44.167" y2="16.978"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="44.167" y1="45.581" x2="44.167" y2="16.978"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="77.778" y1="31.125" x2="58.611" y2="51.541"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="77.778" y1="31.125" x2="44.167" y2="45.581"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="72.628" y1="43.781" x2="38.167" y2="31.153"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="58.611" y1="51.541" x2="38.069" y2="30.854"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="58.555" y1="10.709" x2="77.805" y2="31.152"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="58.555" y1="10.709" x2="38.167" y2="31.153"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="72.998" y1="16.668" x2="38.167" y2="31.153"/>
+	<line display="inline" fill="none" stroke="#F1F2F2" x1="77.778" y1="31.125" x2="43.527" y2="16.708"/>
+	<circle display="inline" fill="none" stroke="#FFFFFF" stroke-width="2" cx="57.606" cy="30.246" r="19.537"/>
+	<circle display="inline" stroke="#FFFFFF" stroke-width="2" cx="58.554" cy="10.709" r="4.103"/>
+	<circle display="inline" stroke="#FFFFFF" stroke-width="2" cx="44.126" cy="16.709" r="4.102"/>
+	<circle display="inline" stroke="#FFFFFF" stroke-width="2" cx="38.167" cy="31.153" r="4.103"/>
+	<circle display="inline" stroke="#FFFFFF" stroke-width="2" cx="44.167" cy="45.581" r="4.102"/>
+	<circle display="inline" stroke="#FFFFFF" stroke-width="2" cx="58.612" cy="51.54" r="4.102"/>
+	<circle display="inline" stroke="#FFFFFF" stroke-width="2" cx="72.257" cy="43.782" r="4.102"/>
+	<circle display="inline" stroke="#FFFFFF" stroke-width="2" cx="77.803" cy="31.153" r="4.102"/>
+	<path display="inline" stroke="#FFFFFF" stroke-width="2" d="M75.899,19.568c-1.602,1.603-4.2,1.603-5.802,0
+		c-1.604-1.602-1.604-4.2,0-5.8c1.603-1.603,4.199-1.604,5.802-0.004C77.501,15.369,77.501,17.966,75.899,19.568z"/>
+</g>
+<g id="Cycle">
+	<circle fill="none" stroke="#FFFFFF" stroke-width="2" cx="57.606" cy="30.246" r="19.537"/>
+	<circle stroke="#FFFFFF" stroke-width="2" cx="58.554" cy="10.709" r="4.103"/>
+	<circle stroke="#FFFFFF" stroke-width="2" cx="44.126" cy="16.709" r="4.102"/>
+	<circle stroke="#FFFFFF" stroke-width="2" cx="38.167" cy="31.153" r="4.103"/>
+	<circle stroke="#FFFFFF" stroke-width="2" cx="44.167" cy="45.581" r="4.102"/>
+	<circle stroke="#FFFFFF" stroke-width="2" cx="58.612" cy="51.54" r="4.102"/>
+	<circle stroke="#FFFFFF" stroke-width="2" cx="72.257" cy="43.782" r="4.102"/>
+	<circle stroke="#FFFFFF" stroke-width="2" cx="77.803" cy="31.153" r="4.102"/>
+	<path stroke="#FFFFFF" stroke-width="2" d="M75.899,19.568c-1.602,1.603-4.2,1.603-5.802,0c-1.604-1.602-1.604-4.2,0-5.8
+		c1.603-1.603,4.199-1.604,5.802-0.004C77.501,15.369,77.501,17.966,75.899,19.568z"/>
+</g>
+</svg>
