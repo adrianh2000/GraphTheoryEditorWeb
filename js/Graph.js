@@ -1,8 +1,6 @@
 class Graph {
   constructor() {
     this.vertexList = [];
-    this.maxNumRows = 5;
-    this.maxNumCols = 5;
     this.adjacencyMatrix = [[]];
     this.selectedEdge = [-1, -1]; //contains index of vertices vi, vj adjacent to the selected edge
     this.selectedEdgeColor = "#FF0000";
@@ -38,9 +36,24 @@ class Graph {
     this.selectedEdge = [-1, -1];
   }
 
+  //removes all vertices and edges
+  clearGraph() {
+    this.vertexList = [];
+    this.adjacencyMatrix = [[]];
+    this.selectedEdge = [-1, -1]; //contains index of vertices vi, vj adjacent to the selected edge
+  }
+  
   //returns array with [vi, vj] of the selected edge
   getSelectedEdge() {
     return this.selectedEdge;
+  }
+
+  selectVertex(vertexIndex) {
+    this.vertexList[vertexIndex].setSelected(true);
+  }
+
+  deselectVertex(vertexIndex) {
+    this.vertexList[selectedEdgeArray[vertexIndex]].setSelected(false);
   }
 
   makeComplement() {
@@ -49,7 +62,55 @@ class Graph {
           if(this.adjacencyMatrix[row][col] == 1)
             this.adjacencyMatrix[row][col] = 0;
           else
-            this.adjacencyMatrix[row][col] = 1;          
+            this.adjacencyMatrix[row][col] = 1;
+  }
+
+  makeCycle(n, x, y, cycleRadius, vertexRadius, fillColor, strokeColor, strokeWeight) {
+    this.adjacencyMatrix = [[]];
+    this.vertexList = [];
+    var thetaStep = 2 * Math.PI / n, theta = 0;
+
+    //Add first vertex
+    var x0 = x + cycleRadius * Math.cos(theta);
+    var y0 = y + cycleRadius * Math.sin(theta);
+    this.addVertex(x0, y0, vertexRadius, 0, fillColor, strokeColor, strokeWeight);
+    theta += thetaStep;
+
+    for(var i = 1; i < n; i++) {
+      x0 = x + cycleRadius * Math.cos(theta);
+      y0 = y + cycleRadius * Math.sin(theta);
+      this.addVertex(x0, y0, vertexRadius, i, fillColor, strokeColor, strokeWeight);
+      this.addEdge(i-1, i);
+      theta += thetaStep;
+    }
+
+    //Add last edge
+    this.addEdge(0, n-1);
+  }
+
+  makeCycleNoEdges(n, x, y, cycleRadius, vertexRadius, fillColor, strokeColor, strokeWeight) {
+    this.adjacencyMatrix = [[]];
+    this.vertexList = [];
+    var thetaStep = 2 * Math.PI / n, theta = 0;
+    var x0, y0;
+
+    for(var i = 0; i < n; i++) {
+      x0 = x + cycleRadius * Math.cos(theta);
+      y0 = y + cycleRadius * Math.sin(theta);
+      this.addVertex(x0, y0, vertexRadius, i, fillColor, strokeColor, strokeWeight);
+
+      theta += thetaStep;
+    }
+  }
+
+  makeCompleteGraph(n, x, y, cycleRadius, vertexRadius, fillColor, strokeColor, strokeWeight) {
+    //begin with empty cycle
+    this.makeCycleNoEdges(n, x, y, cycleRadius, vertexRadius, fillColor, strokeColor, strokeWeight);
+
+    //add edges
+    for(var row = 0; row < this.vertexList.length; row++)
+      for(var col = row + 1; col < this.vertexList.length; col++)
+        this.addEdge(row, col);
   }
 
   draw(context) {

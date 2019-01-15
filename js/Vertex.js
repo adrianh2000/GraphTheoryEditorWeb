@@ -7,6 +7,8 @@ class Vertex {
     this.fillColor = fillColor;
     this.strokeColor = strokeColor;
     this.strokeWeight = strokeWeight;
+    this.isSelected = false;
+    this.selectedColor = "red";
   }
 
   setFillColor(newColor) { this.fillColor = newColor;  }
@@ -15,7 +17,12 @@ class Vertex {
     context.beginPath();
     context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     context.fillStyle = this.fillColor;
-    context.strokeStyle = this.strokeColor;
+
+    if(this.isSelected)
+      context.strokeStyle = this.selectedColor;
+    else
+      context.strokeStyle = this.strokeColor;
+      
     context.lineWidth = this.strokeWeight;
     context.fill();
     context.stroke();
@@ -34,4 +41,6 @@ class Vertex {
     this.x = x;
     this.y = y;
   }
+
+  setSelected(isVertexSelected) { this.isSelected = isVertexSelected; }
 }

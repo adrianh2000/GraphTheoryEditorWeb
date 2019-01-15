@@ -18,7 +18,8 @@
 
 </head>
 <body>
-	<div class="headerStyle">Graph Theory Editor
+	<div class="headerStyle">
+      Graph Theory Editor
     </div>
 	<!-- start header -->
 	<div class="grid-container">
@@ -54,29 +55,23 @@
 						</ul>
 						</li>
 						<li class="dropdown">
-						<a href="#">Pages <i class="icon-angle-down"></i></a>
+						<a href="#">Labeling <i class="icon-angle-down"></i></a>
 						<ul class="dropdown-menu bold">
-							<li><a href="">About us</a></li>
-							<li><a href="">Pricing boxes</a></li>
-							<li><a href="">404</a></li>
+              <li><a href="">Graceful (Vertex)</a></li>
+							<li><a href="">Graceful (Edge)</a></li>
+							<li><a href="">Harmonious</a></li>
+							<li><a href="">Magic</a></li>
+              <li><a href="">Prime</a></li>
 						</ul>
 						</li>
 						<li class="dropdown">
-						<a href="#">Portfolio <i class="icon-angle-down"></i></a>
+						<a href="#">Drawing <i class="icon-angle-down"></i></a>
 						<ul style="display: none;" class="dropdown-menu bold">
-							<li><a href="">Portfolio 2 columns</a></li>
-							<li><a href="">Portfolio 3 columns</a></li>
-							<li><a href="">Portfolio 4 columns</a></li>
-							<li><a href="">Portfolio detail</a></li>
-						</ul>
-						</li>
-						<li class="dropdown">
-						<a href="#">Blog <i class="icon-angle-down"></i></a>
-						<ul class="dropdown-menu bold">
-							<li><a href="">Blog left sidebar</a></li>
-							<li><a href="">Blog right sidebar</a></li>
-							<li><a href="">Post left sidebar</a></li>
-							<li><a href="">Post right sidebar</a></li>
+							<li><a href="">Force-based layout</a></li>
+							<li><a href="">Spectral layout</a></li>
+							<li><a href="">Orthogonal layout</a></li>
+							<li><a href="">Tree Layout</a></li>
+              <li><a href="">Arc diagrams</a></li>
 						</ul>
 						</li>
 						<li>
@@ -100,14 +95,20 @@
 			  <a href="#" onclick="setAction('Vertex');" id="toolbar_Vertex"><i class="fa fa-circle"></i></a>
 			  <a href="#" onclick="setAction('Edge');" id="toolbar_Edge"><i class="fa fa-link"></i></a>
 			  <a href="#" onclick="setAction('Complement');" id="toolbar_Complement"><i><img src="img/iconComplement.svg" class="icon-complement"></i></a>
-			  <a href="#"><i><img src="img/iconCycle.svg" class="icon-cycle"></i></a>
-			  <a href="#"><i><img src="img/iconCompleteGraph.svg" class="icon-completeGraph"></i></a>
+			  <a href="#" onclick="setAction('Cycle');" id='toolbar_Cycle'><i><img src="img/iconCycle.svg" class="icon-cycle"></i></a>
+			  <a href="#" onclick="setAction('CompleteGraph');" id='toolbar_CompleteGraph'><i><img src="img/iconCompleteGraph.svg" class="icon-completeGraph"></i></a>
 			  <a href="#"><i class="fa fa-android"></i></a>
-			  <a href="#"><i class="fa fa-trash"></i></a>
+			  <a href="#" onclick="setAction('DeleteGraph');" id='toolbar_DeleteGraph'><i class="fa fa-trash"></i></a>
 			</div>
 		</div> <!-- end toolbar -->
     <div class = "grid-infobox">
-      <p>This is the infobox...</p>
+      <p>This area will be used to display information about the current graph and output results from algorithms.</p>
+    </div>
+    <div class = "grid-parameters">
+      <p>This area is where the parameters for algorithms will appear</p>
+    </div>
+    <div class = "grid-copyright">
+      <p>Research Project by Dr. Adrian Heinz. (C) 2019 Georgia Gwinnett College.</p>
     </div>
 	</div> <!-- end container -->
 

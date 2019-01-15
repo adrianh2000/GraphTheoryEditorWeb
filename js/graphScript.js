@@ -10,14 +10,15 @@ var context = canvas.getContext("2d");
 var graph = new Graph();
 var vertexList = [];
 var vertexColors = ['#CCCCFF', "#FA03E7"];
+var vertexStrokeColors = ['#0000AA', '#AA0000'];
 var btnVertex = document.getElementById("imgVertex");
 var btnEdge = document.getElementById("imgEdge");
 var btnSelection = document.getElementById("imgSelector");
 var curAction = "Selection";
-var toolbarAction = ['Selection', 'Vertex', 'Edge', 'Tree', 'Copy','Paste','Settings','Save','Algorithm','Trash'];
+var toolbarAction = ['Selection', 'Vertex', 'Edge', 'Complement', 'Cycle','CompleteGraph','Algorithm','DeleteGraph'];
 var curToolbarAction = "Selection";
 var selectedVerticesIndex = [];
-var mouseX = 0, mouseY = 0;
+var mouseX = 0, mouseY = 0, vertexRadius = 10;
 
 fitToContainer(canvas);
 
@@ -77,6 +78,22 @@ function setAction(newToolbarAction) {
           document.getElementById("toolbar_Selection").className = "active-toolbar";
           refreshCanvas(context);
         break;
+      case "Cycle":
+        var w = canvas.width, h = canvas.height;
+        var r = Math.sqrt(w*w + h*h);
+        graph.makeCycle(20, w/2, h/2, r/8, vertexRadius, vertexColors[0],vertexStrokeColors[0], 2);
+        refreshCanvas(context);
+        break;
+      case "CompleteGraph":
+        var w = canvas.width, h = canvas.height;
+        var r = Math.sqrt(w*w + h*h);
+        graph.makeCompleteGraph(20, w/2, h/2, r/8, vertexRadius, vertexColors[0],vertexStrokeColors[0], 2);
+        refreshCanvas(context);
+        break;
+      case "DeleteGraph":
+        graph.clearGraph();
+        refreshCanvas(context);
+        break;
       default:
 
     }
@@ -112,7 +129,7 @@ function createNewVertex(e) {
     posx = pos.x;
     posy = pos.y;
 
-    graph.addVertex(posx, posy, 10, vlabel, vertexColors[0], "#0000AA", 2);
+    graph.addVertex(posx, posy, vertexRadius, vlabel, vertexColors[0], vertexStrokeColors[0], 2);
     refreshCanvas(context);
 }
 
@@ -182,6 +199,7 @@ function mouseClick(e) {
           selectedVerticesIndex.push(index);
           curAction = 'MoveVertex';
           console.log("Vertex ="+index+" was selected");
+          //graph.selectVertex(index);
           return;
         }
 
