@@ -73,7 +73,8 @@ function setAction(newToolbarAction) {
       case "Complement":
           graph.makeComplement();
           curToolbarAction = "Selection";
-          curAction = curToolbarAction;
+          //curAction = curToolbarAction;
+          selectedVerticesIndex = [];
           document.getElementById("toolbar_Complement").className = "";
           document.getElementById("toolbar_Selection").className = "active-toolbar";
           refreshCanvas(context);
@@ -81,17 +82,32 @@ function setAction(newToolbarAction) {
       case "Cycle":
         var w = canvas.width, h = canvas.height;
         var r = Math.sqrt(w*w + h*h);
+        curToolbarAction = "Selection";
+        //curAction = curToolbarAction;
+        selectedVerticesIndex = [];
         graph.makeCycle(20, w/2, h/2, r/8, vertexRadius, vertexColors[0],vertexStrokeColors[0], 2);
+        document.getElementById("toolbar_Cycle").className = "";
+        document.getElementById("toolbar_Selection").className = "active-toolbar";
         refreshCanvas(context);
         break;
       case "CompleteGraph":
         var w = canvas.width, h = canvas.height;
         var r = Math.sqrt(w*w + h*h);
+        curToolbarAction = "Selection";
+        //curAction = curToolbarAction;
+        selectedVerticesIndex = [];
         graph.makeCompleteGraph(20, w/2, h/2, r/8, vertexRadius, vertexColors[0],vertexStrokeColors[0], 2);
+        document.getElementById("toolbar_CompleteGraph").className = "";
+        document.getElementById("toolbar_Selection").className = "active-toolbar";
         refreshCanvas(context);
         break;
       case "DeleteGraph":
         graph.clearGraph();
+        curToolbarAction = "Selection";
+        selectedVerticesIndex = [];
+        //curAction = curToolbarAction;
+        document.getElementById("toolbar_DeleteGraph").className = "";
+        document.getElementById("toolbar_Selection").className = "active-toolbar";
         refreshCanvas(context);
         break;
       default:
@@ -158,6 +174,7 @@ function onMouseMove(e) {
       v1.setXY(v1.x + xdif, v1.y + ydif);
 
       refreshCanvas(context);
+      
       return;
     }
 
@@ -252,9 +269,10 @@ function mouseClick(e) {
           }
         }
         else return; //if no vertices were selected, quit
-
       break;
     default:
+      curAction = "Selection";
+      break;
   }
 }
 
